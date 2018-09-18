@@ -1,22 +1,36 @@
-// Newedge
+node {
+    def app
 
-// Repo: ssh://gitolite@forge.b-com.com/new-edge/wef/vnf-hss.git
+    stage('Clone repository') {
+        /* Let's make sure we have the repository cloned to our workspace */
 
-// getServiceStandardParameters adds the following parameters with default values:
-// IMAGE_NAME
-// ARTIFACTORY_CREDENTIAL_ID
-// DOCKER_REGISTRY
-// GIT_CREDENTIAL_ID
-getServiceStandardParameters()
+        checkout scm
+    }
 
-// Checkout source from git and stash it to 'source'
-checkoutGit()
+    stage('Build image') {
+        /* This builds the actual image; synonymous to
+         * docker build on the command line */
 
-// Build and Push Docker Image
-buildDocker NAME: params.IMAGE_NAME,
-  PUSH: 'master'.equals(env.BRANCH_NAME),
-  REGISTRY: params.DOCKER_REGISTRY,
-  CREDENTIALS: params.ARTIFACTORY_CREDENTIAL_ID
+        app = docker.build("getintodevops/hellonode")
+    }
 
-// try to Promote Release
-gitPromoteRelease gitCredentialId: params.GIT_CREDENTIAL_ID
+    stage('Test image') {
+        /* Ideally, we would run a test framework against our image.
+         * For this example, we're using a Volkswagen-type approach ;-) */
+
+        app.inside {
+            sh 'echo "Tests passed"'
+        }
+    }
+
+    stage('Push image') {
+        /* Finally, we'll push the image with two tags:
+         * First, the incremental build number from Jenkins
+         * Second, the 'latest' tag.
+         * Pushing multiple tags is cheap, as all the layers are reused. */
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
+        }
+    }
+}

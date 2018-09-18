@@ -11,7 +11,9 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("getintodevops/hellonode")
+        /*app = docker.build("getintodevops/hellonode")*/
+        sh 'IMAGE_NAME="mouhamedfall/hellowhale:${BUILD_NUMBER}"
+			docker build . -t $IMAGE_NAME'
     }
 
     stage('Test image') {

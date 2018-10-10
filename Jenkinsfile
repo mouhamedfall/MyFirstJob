@@ -11,7 +11,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("mouhamedfall/vnf-hss-db")
+        app = docker.build("mouhamedfall/hss-db")
     }
 
     stage('Test image') {

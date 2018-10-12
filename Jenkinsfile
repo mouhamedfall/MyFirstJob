@@ -6,6 +6,16 @@ pipeline {
   }
   agent any
   stages {
+    stage('Shell-script') {
+      steps {
+        sh 'echo hello world'
+      }
+    }
+    stage('Shell-script') {
+      steps {
+        sh 'kubectl get pods'
+      }
+    }
     stage('Cloning Git') {
       steps {
         git 'https://github.com/mouhamedfall/MyFirstJob.git'

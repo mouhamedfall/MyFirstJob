@@ -11,7 +11,7 @@ pipeline {
         sh 'echo hello world'
       }
     }
-    stage('Shell-script') {
+    stage('Kubernetes') {
       steps {
         sh 'kubectl get pods'
       }

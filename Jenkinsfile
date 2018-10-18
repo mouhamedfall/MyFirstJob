@@ -11,11 +11,6 @@ pipeline {
         sh 'echo hello world'
       }
     }
-    stage('Kubernetes') {
-      steps {
-        sh 'kubectl get pods'
-      }
-    }
     stage('Cloning Git') {
       steps {
         git 'https://github.com/mouhamedfall/MyFirstJob.git'

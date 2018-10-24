@@ -53,3 +53,6 @@ sudo service docker restart
 #to change jenkins port
 vim /etc/default/jenkins
 HTTP_PORT=8088
+
+
+echo "mfall ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/mfall

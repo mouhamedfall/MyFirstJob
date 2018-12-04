@@ -9,8 +9,8 @@ pipeline {
     // Checkout Stage
         stage ('Checkout') {
           environment {
-            HTTPS_PROXY = 'http://nrs-proxy01.ad-subs.w2k.francetelecom.fr:3128'
-            HTTP_PROXY = 'http://nrs-proxy01.ad-subs.w2k.francetelecom.fr:3128'
+            HTTPS_PROXY = 'nrs-proxy01.ad-subs.w2k.francetelecom.fr:3128'
+            HTTP_PROXY = 'nrs-proxy01.ad-subs.w2k.francetelecom.fr:3128'
             PROXY_ENABLED = 'TRUE'
           }
     stage('Shell-script') {

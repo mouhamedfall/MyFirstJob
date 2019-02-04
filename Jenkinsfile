@@ -6,18 +6,6 @@ pipeline {
   }
   agent any
   stages {
-    // Checkout Stage
-        stage ('Checkout') {
-          environment {
-            HTTPS_PROXY = 'nrs-proxy01.ad-subs.w2k.francetelecom.fr:3128'
-            HTTP_PROXY = 'nrs-proxy01.ad-subs.w2k.francetelecom.fr:3128'
-            PROXY_ENABLED = 'TRUE'
-          }
-    stage('Shell-script') {
-      steps {
-        sh 'echo hello world'
-      }
-    }
     stage('Cloning Git') {
       steps {
         git 'https://github.com/mouhamedfall/MyFirstJob.git'
@@ -38,6 +26,11 @@ pipeline {
           }
         }
       }
+    }
+    stage('Remove Unused docker image') {
+        steps{
+            sh "docker rmi $registry:$BUILD_NUMBER"
+        }
     }
   }
 }

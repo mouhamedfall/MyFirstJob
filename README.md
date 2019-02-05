@@ -32,3 +32,9 @@ choose project
 
 
 build trigger 1mn
+
+
+
+
+
+kubectl --kubeconfig .kube/config  get nodes

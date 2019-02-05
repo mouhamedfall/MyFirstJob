@@ -32,5 +32,11 @@ pipeline {
             sh "docker rmi $registry:$BUILD_NUMBER"
         }
     }
+    stage('Remove Unused docker image') {
+        steps{
+            sh "sudo kubectl --kubeconfig .kube/config  get nodes"
+        }
+    }
+  }
   }
 }

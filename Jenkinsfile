@@ -11,6 +11,11 @@ pipeline {
         git 'https://github.com/mouhamedfall/MyFirstJob.git'
       }
     }
+    stage('Unit Tests') {
+      steps {
+        sh "unit tests"
+      }
+    }
     stage('Building image') {
       steps{
         script {

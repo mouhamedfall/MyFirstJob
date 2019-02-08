@@ -39,7 +39,8 @@ pipeline {
     }
       stage('Deploy container on kubernetes') {
         steps{
-            sh "sudo kubectl --kubeconfig .kube/config  get nodes"
+            sh "test"
+            #sh "sudo kubectl --kubeconfig .kube/config  get nodes"
         }
     }
   }

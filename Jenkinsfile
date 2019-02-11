@@ -13,7 +13,7 @@ pipeline {
     }
     stage('Unit Tests') {
       steps {
-        sh "'unit tests'"
+        sh "echo 'unit tests'"
       }
     }
     stage('Building image') {
@@ -39,7 +39,7 @@ pipeline {
     }
       stage('Deploy container on kubernetes') {
         steps{
-            sh "'deploy on kubernetes'"
+            sh "echo 'deploy on kubernetes'"
         }
     }
   }

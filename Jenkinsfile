@@ -26,10 +26,10 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-          #sh " docker login -u admin -p admin123 mfall:8083"
+          //sh " docker login -u admin -p admin123 mfall:8083"
           sh " docker push $registry:$BUILD_NUMBER"
-          #docker.withRegistry( '', registryCredential ) {
-            #dockerImage.push()
+          //docker.withRegistry( '', registryCredential ) {
+            //dockerImage.push()
           }
         }
       }

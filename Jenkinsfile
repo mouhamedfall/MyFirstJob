@@ -27,7 +27,7 @@ pipeline {
       steps{
         script {
           //sh " docker login -u admin -p admin123 mfall:8083"
-          sh " docker push $registry:$BUILD_NUMBER"
+          sh " sudo docker push $registry:$BUILD_NUMBER"
           //docker.withRegistry( '', registryCredential ) {
             //dockerImage.push()
           //}
@@ -36,7 +36,7 @@ pipeline {
     }
     stage('Remove Unused docker image') {
         steps{
-            sh "docker rmi $registry:$BUILD_NUMBER"
+            sh "sudo docker rmi $registry:$BUILD_NUMBER"
         }
     }
       stage('Deploy container on kubernetes') {

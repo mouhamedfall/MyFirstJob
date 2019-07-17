@@ -26,7 +26,7 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-          sh " docker login -u mouhamedfall -p TaySiir28 "
+          sh " docker login -u mouhamedfall -p mypasswd "
           sh " sudo docker push $registry:$BUILD_NUMBER"
           //sh "sudo docker run --name nginx -p 8080:80 -d nginx"
           //docker.withRegistry( '', registryCredential ) {

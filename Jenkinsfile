@@ -26,9 +26,9 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-          sh " docker login -u mouhamedfall -p mypasswd "
+          sh " docker login -u mouhamedfall -p TaySiir28 "
           sh " sudo docker push $registry:$BUILD_NUMBER"
-          sh "sudo docker run --name nginx -p 8080:80 -d nginx"
+          //sh "sudo docker run --name nginx -p 8080:80 -d nginx"
           //docker.withRegistry( '', registryCredential ) {
             //dockerImage.push()
           //}
@@ -43,6 +43,9 @@ pipeline {
       stage('Deploy container on kubernetes') {
         steps{
             sh "echo 'deploy on kubernetes'"
+            //sh "kubectl get nodes"
+            sh("kubectl get nodes")
+            sh("helm list ")
         }
     }
   }

@@ -45,6 +45,7 @@ pipeline {
             sh "echo 'deploy on kubernetes'"
             //sh "kubectl get nodes"
             sh("kubectl get nodes")
+            sh("kubectl scale --replicas=3 deployment/nginx")
             sh("helm list ")
         }
     }
